@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<body>
+    <div id="disp" style="text-align: center;"></div>
+    <input type="button" value="에이잭스" onclick="f_ajax()">
+    
+</body>
+<script>
+    // 내일 요걸 이용해서 jquery Ajax 맹글어 볼까용
+    function f_ajax() {
+        var v_ajax = new XMLHttpRequest(); // 요건 항상 지역변수로.. 전역으로하면 미워용
+        v_ajax.open("get", "data.xml", true);
+        v_ajax.onreadystatechange = function () {
+            if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                //xml은 html문서처럼 DOM으로 처리하면 훨씬 편함
+
+                var v_xmlDoc = v_ajax.responseXML;
+                // console.log(v_xmlDoc);
+                var v_friends = v_xmlDoc.querySelectorAll("friend");
+                var v_tblStr = "<table border=1>"
+                v_tblStr += "<tr><th>이름</th><th>나이</th><th>별명</th></tr>";
+                for (let i = 0; i < v_friends.length; i++) {
+                    v_tblStr += "<tr>";
+                    var v_childs = v_friends[i].children;
+                    for (let j = 0; j < v_childs.length; j++) {
+                        // console.log(v_childs[j].tagName, " ==> ", v_childs[j].innerHTML); // 태그명 ==> 태그안의 값
+                        v_tblStr += `<td>${v_childs[j].innerHTML}</td>`
+                    }
+                    v_tblStr += "</tr>";
+                }
+                v_tblStr += "</table>";
+                document.querySelector('#disp').innerHTML = v_tblStr
+                
+                
+                // var v_receiveData = JSON.parse(v_ajax.responseText);
+                // console.log(v_receiveData); // 온 데이타를 꼭 먼저 누느로 화긴하는 습관 필요
+                
+                /*
+                // 여기서 받은 데이터를 table형식으로 표현해보삼
+                var v_tblStr = "<table border=1>"
+                v_tblStr += "<tr><th>이름</th><th>나이</th><th>별명</th></tr>";
+                for (let i = 0; i < v_receiveData.length; i++) {
+                    v_tblStr += "<tr>";
+                    v_tblStr += `<td>${v_receiveData[i].name}</td>`
+                    v_tblStr += `<td>${v_receiveData[i].age}</td>`
+                    v_tblStr += `<td>${v_receiveData[i].alias}</td>`
+                }
+                v_tblStr += "</table>";
+                document.querySelector('#disp').innerHTML = v_tblStr
+                */
+                
+                /*
+                var v_split = v_receiveData.split("\n")
+                var v_headers = v_split[0].split(",");
+
+                var v_tableStr = "<table border = 1>";
+                    v_tableStr += `<tr><th>${v_headers[0]}</th><th>${v_headers[1]}</th><th>${v_headers[2]}</th></tr>`;
+                for (let i = 1; i < v_split.length-1; i++) {
+                    var v_inner = v_split[i].split(",");
+                    v_tableStr += `<tr><th>${v_inner[0]}</th><th>${v_inner[1]}</th><th>${v_inner[2]}</th></tr>`;
+                }
+                v_tableStr += "</table>"
+                document.querySelector("#disp").innerHTML = v_tableStr;
+                */
+            }
+        }
+        v_ajax.send();
+    }
+
+        // 2000대 초 ajax(Asynchronous JavAscript Xml)를 아무도 믿지 않았지만
+        // 구글이 gmail과 구글 map을 비동기 아작스로 훌륭히 구현하면서
+        // 개발자 필수 사항으로 확립되고, javascript가 하나의 언어로 자리잡는데 기여함
+        // 머릿속에 이 내용이 담아져 있으면 엄청 좋음
+
+        // 전역변수로 쓰지 마삼!!!!
+    /*
+    var v_ajax = new XMLHttpRequest();                          // 대신 통신해줄 아자씨(심부름꾼) 생성
+    v_ajax.open("get","data.html",true);                        // 시킬일 지정
+    v_ajax.onreadystatechange = function(){                     // 통신 아저씨에게 변화가 발생하면 이벤트 발생
+        //우리는 일이 끝났는지만 관심 있어용
+        // alert(v_ajax.readyState);                               //  실제로 이벤트가 여러번 발생. 준비, 전송, 받기 등등
+        if (v_ajax.readyState == 4 && v_ajax.status == 200){    // 통신 아저씨가 일 다 끝났다고 함( 믿음이 쪼매 부족)
+            var v_receiveData = v_ajax.responseText;               // 서버가 준 내용
+            document.querySelector("#disp").innerHTML = v_receiveData;
+        }
+    }
+    v_ajax.send();                                              //시킨 일 하시옹
+
+    alert(v_ajax.responseText); //? 여긴 값이 없음(비동기), 요기에서 비동기 여부 확인 가능
+    */
+</script>

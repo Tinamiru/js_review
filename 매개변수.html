@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script>
+
+
+    // 보통 return을 잘 쓰는사람 코드는
+    // else 블락이 없어서 가독성이 더 좋음
+    // 매개변수에 무슨 데이터형이 와도 되는 것 처럼 return 뒤에도 뭐가 와도 상관 없음
+    var aaa = "흥";
+    var fbi = function() {
+        if (aaa == "메롱") {
+            return "완존 메롱";
+        }
+        return "그냥 메롱";
+    }
+
+    alert(fbi());
+    /* return 잘 못쓰면 대우 못받음
+    function f_gy(){
+        // alert("난 성우가 좋아");
+        // return "돌리둬";             // 함수끝에 요거이 생략되어있음
+        return function(){
+            return "헉 헷갈려!";
+        }
+    }
+
+    alert(f_gy()());
+
+
+*/
+    // 스크립트는 매개변수(parameter)로 뭐든 넘길수 있다.
+    // 콜백함수 자체는 비동기/동기 와 아무 상관이 없음.
+    /*
+        function f_merong(p_arg1) {
+            alert(p_arg1());                      // 함수 포인터(FP)
+        }*/
+    /*
+    p_arg1 = function() {
+        alert("나 혜림이양");
+    }
+    */
+    /*
+        f_merong(function () {
+            alert("나 혜림이양");
+        });
+    */
+
+    /*
+    f_merong("메롱");
+    f_merong(272);
+    f_merong([1, 2, 3]);
+    f_merong({
+        name: "이혜림"
+    });
+    f_merong(function () {
+        alert("나 혜림이양");
+    });
+    */
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //자바의 ArrayList를 맹글어 봅시당 (결국 js의 배열임당);
+    // 프로젝트가 아주 커지면 네임스페이스를 활용하는 빈도가 커짐
+
+    var YUMI = {};
+    YUMI.get = function(){
+        alert("흥치뿡");
+    };
+
+    var java ={}; // 괜히 name space용
+    java.io = {}; // 괜히 name space용
+
+    var ArrayList = function () {
+        this.length = 0; // 초기갯수 0
+        return this; // 명시적 표현
+    }
+    ArrayList.prototype.add = function (p_val) {
+        this[this.length] = p_val;
+        this.length++; // 갯수 증가
+        return this; // 메소드 체이닝
+    }
+    // 읽기는 보통 메소드 체이닝 기능을 구현하지 않음
+    // 리턴되는 데이터타입이 지원하는 메소드나 속성을 자동으로 사용하게됨
+
+    ArrayList.prototype.get = function (p_index) {
+        return this[p_index];
+    }
+    ArrayList.prototype.remove = function (p_index) {
+        delete this[p_index];
+        this.length--; // 인덱스 마이너스
+        for (let i = p_index; i < this.length; i++) {
+            this[i] = this[i+1]; // 1개씩 앞으로 땡기기
+        }
+        delete this[this.length]; // 한개씩 땡겼으나 마지막건 지워버리기
+        return this;
+    }
+
+    java.io.ArrayList = ArrayList;
+    var test = new java.io.ArrayList(); // 큰 의미는 없지만 자바인양 사기치기
+    alert(test.add("혜림").add("재훈").add("건영").remove(1).get(0).indexOf("혜림"));
+/*
+    test.add("로제");
+    test.add("제니");
+    test.add("리사");
+
+    test.remove(1);
+    //index 번호가 맘에 안들어용~~ ㅜㅜ 해결 ㄱㄱ!
+    console.log(test);
+    */
+</script>

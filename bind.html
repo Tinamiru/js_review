@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8" />
+    <input type="button" value="누르자잉" id="jrBtn">
+    <script>
+        var v_jrBtn = document.querySelector("#jrBtn");
+
+        function f_check(p_arg) {
+            alert("너머온 매개뼌쑤갑쓴" + p_arg);
+    }
+
+    v_jrBtn.addEventListener("click",f_check.bind({"name":"동석사랑"},"메롱"));
+    </script>

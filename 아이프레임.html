@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=616"></script>
+</head>
+<body>
+    <input type="text" id="txt" value="">
+    <input type="button" value="누르숑" id="btn">
+    <iframe id="ifr" src="" scrolling="no" frameborder="2" style="width:100%"  ></iframe>
+    <div><h1>수현이 잔데용</h1></div>
+<script>
+    const ctxt= document.querySelector("#txt");
+    const cbtn = document.querySelector("#btn");
+    const cifr = document.querySelector("#ifr");
+    cbtn.onclick = ()=>{
+        cifr.src = ctxt.value;
+        cifr.onload = ()=> {
+            console.log(cifr.contentDocument.documentElement.scrollHeight);
+            //강제 사이즈 조정
+            cifr.height = cifr.contentDocument.documentElement.scrollHeight + 50;
+        }            
+    }
+
+</script>    
+</body>
+</html>
