@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=616"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=2348"></script>
 </head>
 <body>
     <input type="text" id="txt" value="">
@@ -14,13 +14,17 @@
     const ctxt= document.querySelector("#txt");
     const cbtn = document.querySelector("#btn");
     const cifr = document.querySelector("#ifr");
+    cifr.onload = ()=> {
+            console.log(cifr.contentDocument.documentElement.scrollHeight);
+            let tunnHeight = 50; // 튜닝값
+            let docHeight = cifr.contentDocument.documentElement.scrollHeight;
+            //강제 사이즈 조정
+            cifr.height = docHeight + tunnHeight;
+    }           
+
     cbtn.onclick = ()=>{
         cifr.src = ctxt.value;
-        cifr.onload = ()=> {
-            console.log(cifr.contentDocument.documentElement.scrollHeight);
-            //강제 사이즈 조정
-            cifr.height = cifr.contentDocument.documentElement.scrollHeight + 50;
-        }            
+         
     }
 
 </script>    
